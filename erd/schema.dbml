@@ -1,0 +1,71 @@
+// Plants: static information about each plant
+TABLE plants {
+  plant_id serial [primary key]
+  name varchar(50)
+  variety varchar(50)
+  taxonomy varchar(100)
+  watering_needs text
+  fertilization_needs text
+  sunlight_needs text
+  planted_date date
+}
+
+// Size: dynamic measurements over time for each plant. 
+TABLE size {
+  plant_id int [ref: > plants.plant_id] 
+  measurement_date date
+  number_of_leaves int
+  stem_width_cm numeric(5,2)
+  stem_height_cm numeric(5,2)
+  optional_comment text
+
+    indexes {
+    (plant_id, measurement_date) [pk]
+  } // Composite key ensures one measurement per plant per day
+}
+
+// Care catalogue: reference table for care types
+TABLE care_catalogue {
+  care_item_id serial [primary key]
+  care_item varchar(100)
+  unit_type varchar(50)
+}
+
+// Care: actions applied to plants (linked to catalogue)
+TABLE care {
+  care_id serial [primary key]
+  plant_id int [ref: > plants.plant_id] 
+  care_item_id int [ref: > care_catalogue.care_item_id] 
+  event_date date
+  amount numeric(6,2)
+  optional_comment text
+}
+
+// Experiment: tracks planned and ongoing experiments
+TABLE experiment {
+  experiment_id serial [primary key]
+  plant_id int [ref: > plants.plant_id] 
+  experiment_name varchar(100)
+  experiment_notes text
+  experiment_start_date date
+  experiment_end_date date
+  status varchar(50) // or enum: planned, active, completed, cancelled
+}
+
+//Experiment log: experiment-based interactions with plants
+TABLE experiment_log {
+  log_id serial [primary key]
+  experiment_id int [ref: > experiment.experiment_id] 
+  event_date date
+  log_type text
+  optional_comment text
+}
+
+// Weather: environmental factors
+TABLE weather {
+  event_date date [primary key]
+  rain boolean // rainfall occurred within the 24h window of that day
+  windy boolean // wind >50km/h occurred within the 24h window of that day
+  heatwave boolean // max temp >40°C
+  cold_warning boolean // min temp <15°C
+}
