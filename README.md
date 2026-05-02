@@ -22,22 +22,22 @@ Tables:
     * weather → environmental conditions over time
 
 Key Design Principles:
-    * Static and dynamic data are separated to keep the schema clean and scalable
-    * A composite key (plant_id + measurement_date) ensures one measurement per plant per day and prevents duplicate entries in time-series data.
-    * Event-based logging for care and experiments
-    * External environmental factors tracked to later support a correlation analysis
-    * The schema is normalized to reduce duplication and maintain query consistency
-    * Categorical fields such as experiment status are constrained to predefined values to ensure data integrity.
+    - Static and dynamic data are separated to keep the schema clean and scalable
+    - A composite key (plant_id + measurement_date) ensures one measurement per plant per day and prevents duplicate entries in time-series data.
+    - Event-based logging for care and experiments
+    - External environmental factors tracked to later support a correlation analysis
+    - The schema is normalized to reduce duplication and maintain query consistency
+    - Categorical fields such as experiment status are constrained to predefined values to ensure data integrity.
 
 --- 
 
 ## Tools
-    * DBML (schema design)
-    * dbdiagram.io (ERD modeling)
-    * PostgreSQL (SQL-based relational database)
-    * PGAdmin (database management
-    * Git and GitHub (version control)
-    * (future) Tableau (data visualization)
+   - DBML (schema design)
+   - dbdiagram.io (ERD modeling)
+   - PostgreSQL (SQL-based relational database)
+   - PGAdmin (database management)
+   - Git and GitHub (version control)
+   - (future) Tableau (data visualization)
 
 ---
 
