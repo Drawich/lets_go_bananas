@@ -14,20 +14,20 @@ The system follows an OLTP-first approach, focusing on accurate operational data
 A normalized relational database is used to support time-based tracking of plant growth, care actions, experiments, and environmental conditions.
 
 Tables:
-    - plants → static plant metadata
-    - size → time-series growth measurements
-    - care → logged maintenance actions (watering, fertilizing, etc.)
-    - care_catalogue → standardized care types
-    - experiment / experiment_log → structured hypothesis tracking
-    - weather → environmental conditions over time
+   - plants → static plant metadata
+   - size → time-series growth measurements
+   - care → logged maintenance actions (watering, fertilizing, etc.)
+   - care_catalogue → standardized care types
+   - experiment / experiment_log → structured hypothesis tracking
+   - weather → environmental conditions over time
 
 Key Design Principles:
-    - Static and dynamic data are separated to keep the schema clean and scalable
-    - A composite key (plant_id + measurement_date) ensures one measurement per plant per day and prevents duplicate entries in time-series data.
-    - Event-based logging for care and experiments
-    - External environmental factors tracked to later support a correlation analysis
-    - The schema is normalized to reduce duplication and maintain query consistency
-    - Categorical fields such as experiment status are constrained to predefined values to ensure data integrity.
+   - Static and dynamic data are separated to keep the schema clean and scalable.
+   - A composite key (plant_id + measurement_date) ensures one measurement per plant per day and prevents duplicate entries in time-series data.
+   - Event-based logging for care and experiments
+   - External environmental factors tracked to later support a correlation analysis
+   - The schema is normalized to reduce duplication and maintain query consistency
+   - Categorical fields such as experiment status are constrained to predefined values to ensure data integrity.
 
 --- 
 
