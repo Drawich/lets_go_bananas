@@ -14,12 +14,12 @@ The system follows an OLTP-first approach, focusing on accurate operational data
 A normalized relational database is used to support time-based tracking of plant growth, care actions, experiments, and environmental conditions.
 
 Tables:
-    * plants → static plant metadata
-    * size → time-series growth measurements
-    * care → logged maintenance actions (watering, fertilizing, etc.)
-    * care_catalogue → standardized care types
-    * experiment / experiment_log → structured hypothesis tracking
-    * weather → environmental conditions over time
+    - plants → static plant metadata
+    - size → time-series growth measurements
+    - care → logged maintenance actions (watering, fertilizing, etc.)
+    - care_catalogue → standardized care types
+    - experiment / experiment_log → structured hypothesis tracking
+    - weather → environmental conditions over time
 
 Key Design Principles:
     - Static and dynamic data are separated to keep the schema clean and scalable
